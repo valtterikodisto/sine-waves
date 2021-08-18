@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react"
+import { css } from "styled-components"
+import { SineWaveSelector } from "./components/SineWaveSelector"
+import { SineWaveView } from "./components/SineWaveView"
+import {
+  createRandomSineWave,
+  SineWaveCategory,
+  sineWaveCategories,
+} from "./domain/sineWave"
 
-function App() {
+const sineWaves = Array(20).fill(0).map(createRandomSineWave)
+
+const appContainerCss = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+export const App: React.FC = () => {
+  const [visibleSineWaveCategories, setVisibleSineWaveCategories] =
+    useState<readonly SineWaveCategory[]>(sineWaveCategories)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div css={appContainerCss}>
+      <SineWaveSelector
+        visibleSineWaveCategories={visibleSineWaveCategories}
+        setVisibleSineWaveCategories={setVisibleSineWaveCategories}
+      />
+      <SineWaveView
+        sineWaves={sineWaves}
+        visibleSineWaveCategories={visibleSineWaveCategories}
+      />
     </div>
-  );
+  )
 }
-
-export default App;
