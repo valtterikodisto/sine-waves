@@ -22,10 +22,8 @@ export const getSineWaveColor = (category: SineWaveCategory): string => {
 }
 
 export const createRandomSineWave = () => {
-  const num = randomNumber(0, 3)
-  const category = sineWaveCategories[num]
   return {
     id: uuid.v4(),
-    category,
+    category: sineWaveCategories[randomNumber(0, sineWaveCategories.length)],
   }
 }

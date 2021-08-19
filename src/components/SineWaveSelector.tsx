@@ -43,11 +43,11 @@ export const SineWaveSelector: React.FC<SineWaveSelectorProps> = ({
   return (
     <div css={containerCss}>
       {sineWaveCategories.map((category) => (
-        <div>
+        <div key={category}>
           <input
             type="checkbox"
             checked={isVisible(category)}
-            onClick={createToggler(category)}
+            onChange={createToggler(category)}
             css={inputCss}
           />
           <label>{category}</label>
