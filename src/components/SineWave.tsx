@@ -15,10 +15,8 @@ export const SineWave: React.FC<SineWaveProps> = ({ category, width }) => {
     (ctx: CanvasRenderingContext2D) => {
       ctx.canvas.width = width
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-      ctx.save()
 
       plotSine(ctx, sineWaveColor, step.current)
-      ctx.restore()
 
       step.current += 4
     },
